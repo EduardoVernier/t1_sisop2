@@ -90,19 +90,14 @@ int main (int argc, char *argv[])
 void *runner (void* arg)
 {
 	int t = *(int *) arg;
-	int currentRow = 0;
+	int currentRow = t;
 	int i = 0, currentCol = 0;
 	/* Chooses which rows to handle given an argument t */
-	while (1)
+	while (currentRow < M)
 	{
-		currentRow = i * nThreads + t % nThreads;
-		if (currentRow < M)
-		{
-			for (currentCol = 0; currentCol < N; currentCol++)
-				multiply (currentRow, currentCol);
-			i++;
-		}
-		else break;
+		for (currentCol = 0; currentCol < N; currentCol++)
+			multiply (currentRow, currentCol);
+		currentRow += nThreads;
 	}	
 	free(arg);		
 }
