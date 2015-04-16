@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
 	/* Checking parameter */
 	if (argv[1] == NULL)
 	{
-		printf ("Usage ./a.out #treads\n");
+		printf ("usage ./a.out nTreads\n");
 		return 0;
 	}
 	nThreads = atoi(argv[1]);
@@ -25,7 +25,10 @@ int main (int argc, char *argv[])
 	in2 = fopen("in2.txt", "r");
 	out = fopen("out.txt", "w");
 	if (in1 == NULL || in2 == NULL || out == NULL)
+	{	
+		printf ("Couldn't open files.\n");
 		return 0;	
+	}	
 	
 
 	/* Reading rows and columns number*/
@@ -89,10 +92,9 @@ int main (int argc, char *argv[])
 
 void *runner (void* arg)
 {
-	int t = *(int *) arg;
-	int currentRow = t;
+	int currentRow =  *(int *) arg;
 	int i = 0, currentCol = 0;
-	/* Chooses which rows to handle given an argument t */
+	/* Chooses which rows to handle given an argument arg */
 	while (currentRow < M)
 	{
 		for (currentCol = 0; currentCol < N; currentCol++)
