@@ -1,5 +1,3 @@
-/* http://stackoverflow.com/questions/15328285/how-to-fork-an-exact-number-of-children
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
